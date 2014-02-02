@@ -1,0 +1,28 @@
+#!/bin/sh
+
+NAME=igmp-querier
+PRIVATE_LOCATION="/var/packages/IGMPQuerier/target"
+IGMPQUERIER=${PRIVATE_LOCATION}/package/sbin/${NAME}
+
+case $1 in
+	start)
+		killall ${NAME}
+		${IGMPQUERIER}
+
+		exit 0
+	;;
+	stop)
+		killall ${NAME}
+
+		exit 0
+	;;
+	status)
+		exit `ps | grep ${NAME} | grep -v grep`
+	;;
+	killall)
+        ;;
+	log)
+		exit 0
+	;;
+esac
+

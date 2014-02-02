@@ -1,0 +1,8 @@
+package="IGMPQuerier"
+displayname="IGMP Querier for Multicast DNS"
+version="1.0"
+description="Fixes a problem with Apple AirPlay / Bonjour devices not showing up on the local network (or showing up and then disappearing after a while) due to faulty IGMP snooping implementations on home routers. This is a frequently reported problem with AV receivers (e.g. from Denon, Yamaha, Pioneer) in conjuction with AirPlay. This package sends IGMP Membership Queries to the Multicast DNS address every 60 second, causing mDNS devices to respond and thereby keeping the routers' snooping tables up-to-date. The generated queries are harmless and should not otherwise interfere with the operation of the network or the router, except for generating additional traffic for the query and the responses."
+maintainer="Daniel Lorch"
+maintainer_url="https://github.com/dlorch/igmp-querier"
+support_url="https://github.com/dlorch/igmp-querier/issues"
+arch="armada370"
