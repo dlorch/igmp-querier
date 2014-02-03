@@ -27,7 +27,8 @@ is not specific to avahi, so you may mentally replace "avahi deamon" by
 "Apple Bonjour" while reading the above text).
 
 The implementation here would not have been possible without his analysis
-and initial implementation of an IGMP querier daemon.
+and initial implementation of an IGMP querier daemon. You can find his
+implementation here: https://bitbucket.org/marc_culler/querierd/
 
 Installation
 ------------
