@@ -31,8 +31,11 @@ static struct libnet_ethernet_hdr etherhdr;
 static struct libnet_ip_hdr iphdr;
 static struct libnet_igmp_hdr igmphdr;
 static struct libnet_link_int *linkint = NULL;
+static u_int32_t igmp_packetlen = 0;
+static u_int8_t *pkt = NULL;
+static char errbuf[ERRBUFFSIZE];
 
-void init(void) {
+int init(void) {
     /* Ethernet header */
     etherhdr.ether_type = ETHERTYPE_IP;      /* Ethernet type IP */
     memset(etherhdr.ether_shost, 0, 6);      /* Ethernet source address */
@@ -53,14 +56,8 @@ void init(void) {
     igmphdr.igmp_type = IGMP_MEMBERSHIP_QUERY;   /* IGMP type */
     igmphdr.igmp_code = 0;                       /* IGMP code */
     inet_aton(MCAST_MDNS, &igmphdr.igmp_group);  /* IGMP group address */
-}
 
-int do_igmp_query(void) {
-    char errbuf[ERRBUFFSIZE];
-    u_int32_t igmp_packetlen = 0;
-    u_int8_t *pkt = NULL;
-    int n = 0;
-
+    /* Create packet */
     linkint = libnet_open_link_interface(LINK_INTERFACE, errbuf);
 
     if (linkint == NULL) {
@@ -87,16 +84,21 @@ int do_igmp_query(void) {
     libnet_do_checksum(pkt + LIBNET_ETH_H, IPPROTO_IP, LIBNET_IP_H);
 
     libnet_do_checksum(pkt + LIBNET_ETH_H, IPPROTO_IGMP, LIBNET_IGMP_H);
+}
+
+int cleanup(void) {
+    libnet_destroy_packet(&pkt);
+    libnet_close_link_interface(linkint);
+}
+
+int do_igmp_query(void) {
+    int n = 0;
 
     n = libnet_write_link_layer(linkint, LINK_INTERFACE, pkt, igmp_packetlen);
 
     if (n != igmp_packetlen) {
       /* incomplete packet injection */
     }
-
-    libnet_destroy_packet(&pkt);
-
-    libnet_close_link_interface(linkint);
 
     return n;
 }
@@ -135,6 +137,8 @@ int main(void) {
         do_igmp_query();
         sleep(INTERVAL_SECS);
     }
+
+    cleanup();
 
     return 0;
 }
