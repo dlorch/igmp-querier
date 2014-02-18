@@ -61,7 +61,7 @@ Development
 -----------
 
 Build dependencies:
-- libnet-1.0.2a
+- libnet-1.0.2a, http://packetfactory.openwall.net/projects/libnet/
 - cross compilation tool chain (provided by Synology). Please read the
   Synology DiskStation Manager 3rd-Party Apps Developer Guide:
   http://www.synology.com/en-global/support/third_party_app_int 
