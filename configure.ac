@@ -165,5 +165,5 @@ dnl Checks for library functions.
 AC_CHECK_FUNCS(inet_aton,,FUNCTION_FAIL_MESSAGE("inet_aton"))
 AC_CHECK_FUNCS(memset,,FUNCTION_FAIL_MESSAGE("memset"))
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile INFO])
 AC_OUTPUT
