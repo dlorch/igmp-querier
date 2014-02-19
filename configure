@@ -3682,7 +3682,7 @@ case $CC_MACHINE in
         ;;
     # PowerPC MPC85xx PowerCUICC III
     powerpc-linux-gnuspe)
-        SYNO_CPU_FAMILY= mpc85xx
+        SYNO_CPU_FAMILY=mpc85xx
         SYNO_PKG_ARCH="ppc853x ppc854x"
         ;;
     # PowerPC QorIQ
