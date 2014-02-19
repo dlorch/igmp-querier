@@ -6,7 +6,7 @@ igmp_querier_SOURCES = igmp-querier.c
 
 SYNO_PKG = $(PACKAGE_NAME)-$(SYNO_ARCH)-$(PACKAGE_VERSION).spk
 
-package: $(bin_PROGRAMS)
+package: $(sbin_PROGRAMS)
 	$(MKDIR_P) dist/
 	$(MKDIR_P) package/sbin/
 	cp $(sbin_PROGRAMS) package/sbin/

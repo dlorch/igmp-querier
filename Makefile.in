@@ -613,7 +613,7 @@ uninstall-am: uninstall-sbinPROGRAMS
 	uninstall-am uninstall-sbinPROGRAMS
 
 
-package: $(bin_PROGRAMS)
+package: $(sbin_PROGRAMS)
 	$(MKDIR_P) dist/
 	$(MKDIR_P) package/sbin/
 	cp $(sbin_PROGRAMS) package/sbin/
