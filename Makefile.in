@@ -121,7 +121,8 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
-SYNO_ARCH = @SYNO_ARCH@
+SYNO_CPU_FAMILY = @SYNO_CPU_FAMILY@
+SYNO_PKG_ARCH = @SYNO_PKG_ARCH@
 VERSION = @VERSION@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -167,7 +168,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 igmp_querier_SOURCES = igmp-querier.c
-SYNO_PKG = $(PACKAGE_NAME)-$(SYNO_ARCH)-$(PACKAGE_VERSION).spk
+SYNO_PKG = $(PACKAGE_NAME)-$(SYNO_CPU_FAMILY)-$(PACKAGE_VERSION).spk
 all: all-am
 
 .SUFFIXES:

@@ -3,25 +3,50 @@ AC_INIT([IGMPQuerier], [1.0], [https://github.com/dlorch/igmp-querier/issues],
 AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CC
 
-dnl Determine Synology CPU architecture string
-AC_MSG_CHECKING(name of Synology CPU architecture)
-cc_machine=`${CC} -dumpmachine`
-case $cc_machine in
+dnl Determine Synology CPU family
+AC_MSG_CHECKING(name of Synology CPU family)
+CC_MACHINE=`${CC} -dumpmachine`
+case $CC_MACHINE in
+    # ARM Kirkwood
+    arm-none-linux-gnueabi)
+        SYNO_CPU_FAMILY=armv5tejl
+        SYNO_PKG_ARCH="88f6281 88f6282 88f628x 88fr131"
+        ;;
+    # ARM Armada
     arm-marvell-linux-gnueabi)
-        SYNO_ARCH=armada370
-        AC_MSG_RESULT($SYNO_ARCH)
+        SYNO_CPU_FAMILY=armv7l
+        SYNO_PKG_ARCH="armada370 armadaxp" 
+        ;;
+    # PowerPC MPC85xx PowerCUICC III 
+    powerpc-linux-gnuspe)    
+        SYNO_CPU_FAMILY= mpc85xx
+        SYNO_PKG_ARCH="ppc853x ppc854x"
+        ;;
+    # PowerPC QorIQ
+    powerpc-none-linux-gnuspe)
+        SYNO_CPU_FAMILY=qoriq 
+        SYNO_PKG_ARCH="qoriq"
+        ;;
+    # Intel x86
+    i686-linux-gnu|i686-pc-linux-gnu)
+        SYNO_CPU_FAMILY=x86
+        SYNO_PKG_ARCH="x86"
+        ;;
+    # Intel x64
+    x86_64-linux-gnu)
+        SYNO_CPU_FAMILY=x64
+        SYNO_PKG_ARCH="x86 cedarview evansport bromolow"
         ;;
     *)
-        SYNO_ARCH=$cc_machine
-        AC_MSG_RESULT($SYNO_ARCH)
-
-        AC_MSG_WARN(Could not determine Synology CPU architecture from gcc,)
-        AC_MSG_WARN(will use ${cc_machine} as the architecture name. Please file)
-        AC_MSG_WARN(a bug report with the output of the following command:)
-        AC_MSG_WARN(  ${CC} -dumpmachine)
+        echo "    ERROR! Synology CPU family ${CC_MACHINE} not recognized. Please"
+        echo "    file a bug report at https://github.com/dlorch/igmp-querier/issues"
+        echo "    with the output of '${CC} -dumpmachine'"
+        exit 1
         ;;
 esac
-AC_SUBST(SYNO_ARCH)
+AC_MSG_RESULT($SYNO_CPU_FAMILY)
+AC_SUBST(SYNO_CPU_FAMILY)
+AC_SUBST(SYNO_PKG_ARCH)
 
 AC_ARG_WITH(libnet_includes,
     [  --with-libnet-includes=DIR    libnet include directory],

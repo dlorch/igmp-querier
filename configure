@@ -608,7 +608,8 @@ LIBOBJS
 EGREP
 GREP
 CPP
-SYNO_ARCH
+SYNO_PKG_ARCH
+SYNO_CPU_FAMILY
 am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
@@ -3665,30 +3666,50 @@ fi
 
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking name of Synology CPU architecture" >&5
-$as_echo_n "checking name of Synology CPU architecture... " >&6; }
-cc_machine=`${CC} -dumpmachine`
-case $cc_machine in
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking name of Synology CPU family" >&5
+$as_echo_n "checking name of Synology CPU family... " >&6; }
+CC_MACHINE=`${CC} -dumpmachine`
+case $CC_MACHINE in
+    # ARM Kirkwood
+    arm-none-linux-gnueabi)
+        SYNO_CPU_FAMILY=armv5tejl
+        SYNO_PKG_ARCH="88f6281 88f6282 88f628x 88fr131"
+        ;;
+    # ARM Armada
     arm-marvell-linux-gnueabi)
-        SYNO_ARCH=armada370
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $SYNO_ARCH" >&5
-$as_echo "$SYNO_ARCH" >&6; }
+        SYNO_CPU_FAMILY=armv7l
+        SYNO_PKG_ARCH="armada370 armadaxp"
+        ;;
+    # PowerPC MPC85xx PowerCUICC III
+    powerpc-linux-gnuspe)
+        SYNO_CPU_FAMILY= mpc85xx
+        SYNO_PKG_ARCH="ppc853x ppc854x"
+        ;;
+    # PowerPC QorIQ
+    powerpc-none-linux-gnuspe)
+        SYNO_CPU_FAMILY=qoriq
+        SYNO_PKG_ARCH="qoriq"
+        ;;
+    # Intel x86
+    i686-linux-gnu|i686-pc-linux-gnu)
+        SYNO_CPU_FAMILY=x86
+        SYNO_PKG_ARCH="x86"
+        ;;
+    # Intel x64
+    x86_64-linux-gnu)
+        SYNO_CPU_FAMILY=x64
+        SYNO_PKG_ARCH="x86 cedarview evansport bromolow"
         ;;
     *)
-        SYNO_ARCH=$cc_machine
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $SYNO_ARCH" >&5
-$as_echo "$SYNO_ARCH" >&6; }
-
-        { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not determine Synology CPU architecture from gcc" >&5
-$as_echo "$as_me: WARNING: Could not determine Synology CPU architecture from gcc" >&2;}
-        { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: will use ${cc_machine} as the architecture name. Please file" >&5
-$as_echo "$as_me: WARNING: will use ${cc_machine} as the architecture name. Please file" >&2;}
-        { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: a bug report with the output of the following command:" >&5
-$as_echo "$as_me: WARNING: a bug report with the output of the following command:" >&2;}
-        { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ${CC} -dumpmachine" >&5
-$as_echo "$as_me: WARNING: ${CC} -dumpmachine" >&2;}
+        echo "    ERROR! Synology CPU family ${CC_MACHINE} not recognized. Please"
+        echo "    file a bug report at https://github.com/dlorch/igmp-querier/issues"
+        echo "    with the output of '${CC} -dumpmachine'"
+        exit 1
         ;;
 esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $SYNO_CPU_FAMILY" >&5
+$as_echo "$SYNO_CPU_FAMILY" >&6; }
+
 
 
 

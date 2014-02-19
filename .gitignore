@@ -3,3 +3,4 @@ config.status
 config.log
 .deps/
 Makefile
+INFO

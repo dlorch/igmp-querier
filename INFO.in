@@ -5,4 +5,4 @@ description="Fixes a problem with Apple AirPlay / Bonjour devices not showing up
 maintainer="Daniel Lorch"
 maintainer_url="https://github.com/dlorch/igmp-querier"
 support_url="https://github.com/dlorch/igmp-querier/issues"
-arch="@SYNO_ARCH@"
+arch="@SYNO_PKG_ARCH@"
