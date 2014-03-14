@@ -37,17 +37,19 @@ Please check http://forum.synology.com/wiki/index.php/What_kind_of_CPU_does_my_N
 for the CPU model applying to your Synology model. Then download the appropriate
 package:
 
-| CPU Model                      | Download Link                                                       |
-| ------------------------------ | ------------------------------------------------------------------- |
-| ARM Kirkwood                   | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-armv5tejl-1.0.spk |
-| ARM Armada                     | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-armv7l-1.0.spk    |
-| PowerPC MPC85xx PowerQUICC III | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-mpc85xx-1.0.spk   |
-| PowerPC QorIQ                  | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-qoriq-1.0.spk     |
-| Intel x86                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x86-1.0.spk       |
-| Intel x64                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x64-1.0.spk       |
+| CPU Model                      | Download Link                                                       | Confirmed Working (*) |
+| ------------------------------ | ------------------------------------------------------------------- | --------------------- |
+| ARM Kirkwood                   | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-armv5tejl-1.0.spk | (please help (*))     |
+| ARM Armada                     | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-armv7l-1.0.spk    | YES                   |
+| PowerPC MPC85xx PowerQUICC III | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-mpc85xx-1.0.spk   | YES                   |
+| PowerPC QorIQ                  | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-qoriq-1.0.spk     | (please help (*))     |
+| Intel x86                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x86-1.0.spk       | (please help (*))     |
+| Intel x64                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x64-1.0.spk       | (please help (*))     |
 
-Other architectures will follow. Would you like to help testing? Please
-let me know (dlorch@gmail.com).
+(*) While I am able to compile for other platforms, lacking any other models
+than mine (DS214se), I cannot test and it on other devices. So if you were
+able to run it on your machine, please drop me a line (dlorch@gmail.com)
+with your Synology model so I know it's working.
 
 Log in to the administration panel of your Synology NAS, click on `manual
 installation' and upload the .spk file. Then follow the installation wizard.
