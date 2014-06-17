@@ -43,7 +43,7 @@ package:
 | ARM Armada                     | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-armv7l-1.0.spk    | YES                   |
 | PowerPC MPC85xx PowerQUICC III | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-mpc85xx-1.0.spk   | YES                   |
 | PowerPC QorIQ                  | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-qoriq-1.0.spk     | (please help (*))     |
-| Intel x86                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x86-1.0.spk       | (please help (*))     |
+| Intel x86                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x86-1.0.spk       | YES                   |
 | Intel x64                      | https://s3.amazonaws.com/igmp-querier/IGMPQuerier-x64-1.0.spk       | (please help (*))     |
 
 (*) While I am able to compile for other platforms, lacking any other models
