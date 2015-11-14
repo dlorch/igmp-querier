@@ -33,7 +33,7 @@ case $CC_MACHINE in
         SYNO_PKG_ARCH="x86"
         ;;
     # Intel x64
-    x86_64-linux-gnu)
+    x86_64-linux-gnu|x86_64-pc-linux-gnu)
         SYNO_CPU_FAMILY=x64
         SYNO_PKG_ARCH="x86 cedarview evansport bromolow"
         ;;
