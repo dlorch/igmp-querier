@@ -1,5 +1,11 @@
-IGMP Querier for Multicast DNS - Synology Package
-=================================================
+Update 2016-01-30: I no longer maintain this package
+====================================================
+
+Try Marc Culler's https://bitbucket.org/marc_culler/querierd/. I have worked around
+the AirPlay issue by purchasing a "Philips Bluetooth® adapter AEA2700".
+
+[ARCHIVED] IGMP Querier for Multicast DNS - Synology Package
+============================================================
 
 Fixes a problem with Apple AirPlay / Bonjour devices not showing up on the local
 network (or showing up and then disappearing after a while) due to faulty IGMP
